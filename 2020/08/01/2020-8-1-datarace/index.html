@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Data Races, what are they, and why are they evil?"/>
+
+
+
+
+  <meta name="keywords" content="concurrency," />
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Yanze Li (李彦泽)">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="funemy.github.io/2020/08/01/2020-8-1-datarace/"/>
+
+
+<meta name="description" content="Race Conditions and Data Races It is commonly known that writing concurrent programs can introduce a kind of bug that normally does not exist in single-threaded programs. Many people refer to them as">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Races, what are they, and why are they evil?">
+<meta property="og:url" content="funemy.github.io/2020/08/01/2020-8-1-datarace/index.html">
+<meta property="og:site_name" content="Yanze Li (李彦泽)">
+<meta property="og:description" content="Race Conditions and Data Races It is commonly known that writing concurrent programs can introduce a kind of bug that normally does not exist in single-threaded programs. Many people refer to them as">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-01T23:10:00.000Z">
+<meta property="article:modified_time" content="2020-08-02T06:35:48.249Z">
+<meta property="article:author" content="Yanze Li (funemy)">
+<meta property="article:tag" content="concurrency">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-68838098-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> Data Races, what are they, and why are they evil? - Yanze Li (李彦泽) </title>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Yanze Li (李彦泽)</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/blogs">
+                            
+                            
+                                Blogs
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Data Races, what are they, and why are they evil?
+        
+      </h1>
+
+      <time class="post-time">
+          Aug 01 2020
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="race-conditions-and-data-races"><a class="markdownIt-Anchor" href="#race-conditions-and-data-races"></a> Race Conditions and Data Races</h3>
+<p>It is commonly known that writing concurrent programs can introduce a kind of bug that normally does not exist in single-threaded programs. Many people refer to them as “Races”, or “Race Conditions”.</p>
+<p>You may also hear about people talking about a kind of bug called “Data Races”. For example, the simulation program for the COVID-19 pandemic was <a href="https://github.com/mrc-ide/covid-sim/issues/161" target="_blank" rel="noopener">questioned</a> about their correctness because of suspected potential “data races”. The discussions have caused quite some drama online.</p>
+<p>So are data races the same as race conditions, given that they both share “race” in their names and have similar code patterns? This confuses a lot of people, and even some experienced developers.</p>
+<p>Simply put, race conditions and data races are different. One is not even a subset of the other, which is a common <a href="https://stackoverflow.com/questions/11276259/are-data-races-and-race-condition-actually-the-same-thing-in-context-of-conc" target="_blank" rel="noopener">misunderstanding</a>.</p>
+<p>Race condition, according to its <a href="https://en.wikipedia.org/wiki/Race_condition" target="_blank" rel="noopener">wiki page</a>:</p>
+<blockquote>
+<p>… is the condition of an electronics, software, or other system where the system’s substantive behavior is dependent on the sequence or timing of other uncontrollable events. It becomes a bug when one or more of the possible behaviors is undesirable.</p>
+</blockquote>
+<p>This definition implies race condition is not inherently a bug. Race conditions are inevitable as long as concurrent events exist in the system. Consider the following example:</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// x is a shared variable</span></span><br><span class="line"><span class="comment">// Thread 1</span></span><br><span class="line"><span class="symbol">x</span> = <span class="number">1</span></span><br><span class="line">print <span class="symbol">x</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Thread 2</span></span><br><span class="line"><span class="symbol">x</span> = <span class="number">999</span></span><br></pre></td></tr></table></figure>
+<p>There is clearly a race condition going on, where the result of <code>print x</code> is dependent on the sequence of assignments to <code>x</code>. However, whether it is a bug really depends on what we expect to be printed out, i.e., if the behavior is “desired”.</p>
+<p>On the other hand, data race is clearly defined as a <strong>bug</strong>. Data race occurs when two memory accesses:</p>
+<ul>
+<li>are accessing the same piece of memory;</li>
+<li>are performed concurrently;</li>
+<li>have at least one write;</li>
+<li>are not protected by synchronization or locks.</li>
+</ul>
+<p>The definition of “concurrently” is language-dependent. For example, the C++ Standard defines two actions as potentially concurrent if:</p>
+<ul>
+<li>they are performed by different threads, or</li>
+<li>they are unsequenced, and at least one is performed by a signal handler.</li>
+</ul>
+<p>The second rule is <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf" target="_blank" rel="noopener">idiosyncratic to C++</a>. The Java Language Specification gives a different <a href="https://docs.oracle.com/javase/specs/jls/se12/html/jls-17.html#jls-17.4.5" target="_blank" rel="noopener">definition</a>.</p>
+<p>Now re-examining the example above, we find it is also a “data race”. The concurrent accesses of <code>x</code> are unprotected, so it is a <strong>BUG</strong>!</p>
+<p>A valid fix for this bug is to simply protect each access with a lock:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// x is a shared variable</span></span><br><span class="line"><span class="comment">// l is a global lock</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Thread 1</span></span><br><span class="line"><span class="function"><span class="title">lock</span><span class="params">(l)</span></span></span><br><span class="line">x = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="title">unlock</span><span class="params">(l)</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">lock</span><span class="params">(l)</span></span></span><br><span class="line">print x</span><br><span class="line"><span class="function"><span class="title">unlock</span><span class="params">(l)</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Thread 2</span></span><br><span class="line"><span class="function"><span class="title">lock</span><span class="params">(l)</span></span></span><br><span class="line">x = <span class="number">999</span></span><br><span class="line"><span class="function"><span class="title">unlock</span><span class="params">(l)</span></span></span><br></pre></td></tr></table></figure>
+<p>Now, all data races in this example are gone, but a race condition still exists. The critical sections (the code segment between a pair of lock and unlock) are still unsequenced. The code can still be buggy, say if printing out “999” is undesirable.</p>
+<h3 id="benign-or-non-benign-where-lies-the-evilness"><a class="markdownIt-Anchor" href="#benign-or-non-benign-where-lies-the-evilness"></a> Benign or non-benign? Where lies the evilness?</h3>
+<p>Let’s suppose printing out “999” is indeed a buggy behavior.</p>
+<p>Clearly, the buggy printing of “999” is not introduced by the data race but the race condition. To get rid of the bug, we can either <em>a)</em> join thread 2 before the write operation to <code>x</code> in thread 1; or <em>b)</em> put the two operations on <code>x</code> in thread 1 into the same critical section. Both fixes ensure there could be no unexpected operation between <code>x = 1</code> and <code>print x</code>.</p>
+<p>Now One observation you might have is, fixing data races does not necessarily eliminate the race conditions. If so, <strong>what is the harm actually brought by a data race? Why we want to get rid of them?</strong></p>
+<p>Before we step into the evil world of data races, let’s first take a step back to understand a concept: <strong>“benign data race”</strong>. There is a widely held and strong perception that data races are acceptable in certain contexts, and thus are commonly used in existing code.</p>
+<p>This turns out to be very wrong. Not only are those benign data races technically incorrect and harmful, but new bugs may be introduced by future re-compilation if the code is meant to be portable.</p>
+<p>I present some common C/C++ “benign” patterns from a <a href="https://www.usenix.org/legacy/event/hotpar11/tech/final_files/Boehm.pdf" target="_blank" rel="noopener">paper</a> by Hans-J. Boehm below, and briefly explain how those common patterns could go wrong:</p>
+<ol>
+<li><em>Double-checked locking</em></li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!init_flag) &#123;</span><br><span class="line">    lock(); </span><br><span class="line">    <span class="keyword">if</span> (!init_flag) &#123;</span><br><span class="line">        my_data = ...;</span><br><span class="line">        init_flag = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    unlock(); </span><br><span class="line">&#125; </span><br><span class="line">tmp = my_data;</span><br></pre></td></tr></table></figure>
+<p>This is a very famous pattern (known as DCLP), and is also well-known to be incorrect. The code is potentially buggy if compiler optimization or hardware reordering is applied (which they are, in most real cases).</p>
+<p>For example, there’s nothing to prevent the compiler from advancing <code>init_flag = true</code> before the setting of <code>my_data</code>, thus a second thread may end up reading an uninitialized value.</p>
+<p>A general solution for this pattern does not exist until Java 1.5 (the <code>volatile</code> keyword) and C++11 (the memory fence). Without these, we have to protect the whole pattern with a lock, which in turn brings a performance degradation.</p>
+<p>For more details about DCLP, you can check the <a href="https://en.wikipedia.org/wiki/Double-checked_locking" target="_blank" rel="noopener">wiki</a>, this <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html" target="_blank" rel="noopener">page</a> for Java, and Scott and Andrei’s <a href="https://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf" target="_blank" rel="noopener">paper</a> about C++.</p>
+<ol start="2">
+<li><em>Reading imprecise value is allowed</em></li>
+</ol>
+<p>There are cases where a read from a thread does not care about if another thread has updated the value or not, i.e., either the old value or the new value results in a valid computation. In such cases, are data races benign?</p>
+<p>The answer, of course, is <strong>NO</strong>. Simply because data races will potentially cause the read operation to obtain a meaningless value that doesn’t correspond to either the old value nor the new value.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Read global</span></span><br><span class="line"><span class="keyword">int</span> my_counter = counter;</span><br><span class="line"><span class="keyword">int</span> (* my_func) (<span class="keyword">int</span>);</span><br><span class="line"><span class="keyword">if</span> (my_counter &gt; my_old_counter) &#123;</span><br><span class="line">    ...</span><br><span class="line">    my_func = ...;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span> (my_counter &gt; my_old_counter) &#123;</span><br><span class="line">    ... </span><br><span class="line">    my_func(...) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Consider the code pattern on the above, where <code>my_counter</code> reads from a global variable counter without protection. The global counter may get updated by some other threads running in parallel. Here the developer may think reading an old value of counter is fine due to the if (<code>my_counter</code> &gt; <code>my_old_counter</code>) check.</p>
+<p>However, if the compiler thinks the register of <code>my_counter</code> needs to be spilled between the two if-checks, then it is legit to re-read <code>my_counter</code>‘s value again to avoid spilling, as shown on the below. Now under this optimized code, the two if-checks may not yield the same result, which can lead to unexpected behavior when calling <code>my_func</code>.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Read global</span></span><br><span class="line"><span class="keyword">int</span> my_counter = counter;</span><br><span class="line"><span class="keyword">int</span> (* my_func) (<span class="keyword">int</span>);</span><br><span class="line"><span class="keyword">if</span> (my_counter &gt; my_old_counter) &#123;</span><br><span class="line">    ...</span><br><span class="line">    my_func = ...;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="comment">// ANOTHER read global</span></span><br><span class="line"><span class="keyword">int</span> my_counter = counter;</span><br><span class="line"><span class="keyword">if</span> (my_counter &gt; my_old_counter) &#123;</span><br><span class="line">    ... </span><br><span class="line">    my_func(...) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If we go a bit further to the hardware level. Assuming we want to maintain an imprecise global 64-bit integer <code>counter</code>. We make the <code>counter++</code> concurrent and unprotected. If your system only supports 32-bit indivisible writes, then once a thread is updating the counter value from <code>2^32 - 1</code> to <code>2^32</code>, another thread could read a value whose higher bits are already updated but lower bits are not. This will make the counter value totally meaningless.</p>
+<ol start="3">
+<li><em>Incorrect ad hoc synchronizations</em></li>
+</ol>
+<p>Ad hoc (or user constructed) synchronizations should not use ordinary operations. Otherwise, we will generally face issues similar to what is mentioned above.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `flag` is intended to be an ad hoc lock</span></span><br><span class="line"><span class="keyword">while</span> (!flag) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// compiler optimized code</span></span><br><span class="line">tmp = flag</span><br><span class="line"><span class="keyword">while</span> (!tmp) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>For example, the busy-waiting loop above can be optimized to something like the second code snippet, due to register spilling. The optimized loop is likely to be infinite, yet it is equivalent to the example on the left under sequential code.</p>
+<p>Or if we want to use a busy-waiting loop as a memory barrier, like the example below:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (!flag) &#123;&#125;; <span class="comment">// waiting for `data` to be updated</span></span><br><span class="line">tmp = data;</span><br></pre></td></tr></table></figure>
+<p>Compiler or hardware could potentially reverse the order of the two instructions. Thus, this ad hoc memory barrier is mostly meaningless.</p>
+<ol start="4">
+<li><em>Redundant write</em></li>
+</ol>
+<p>Assume we have a function f(x):</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// count is a shared variable between threads</span></span><br><span class="line">f(x) &#123;</span><br><span class="line">    ...;</span><br><span class="line">    <span class="keyword">for</span> (p = x; p != <span class="number">0</span>; p = p -&gt; next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;data &lt; <span class="number">0</span>) count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Notice that count is a shared variable, and it’s only updated when p has negative value. Now if we use this function in the following way:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Thread 1</span></span><br><span class="line">count = <span class="number">0</span>;</span><br><span class="line">f(positives);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Thread 2</span></span><br><span class="line">f(positives);</span><br><span class="line">count = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>The argument <code>positives</code> is a linked list whose nodes only contain positive value. Hence, there’s only one data race between the two <code>count = 0</code> instructions. You may wonder, how could this possibly go wrong, since all we are doing is writing the same value to count repeatedly.</p>
+<p>However, things become different if the compiler inlines <code>f(positives)</code> and promote the variable count to a thread-local register (this is legitimate because count is written unconditionally). Now the actual instructions being executed by each thread become something like below:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Thread 1</span></span><br><span class="line">count = <span class="number">0</span>; <span class="comment">// step 2</span></span><br><span class="line">reg1 = count <span class="comment">// step 4</span></span><br><span class="line">count = reg1 <span class="comment">// step 6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Thread 2</span></span><br><span class="line">reg2 = count; <span class="comment">// step 1</span></span><br><span class="line">count = reg2; <span class="comment">// step 3</span></span><br><span class="line">count = <span class="number">0</span>; <span class="comment">// step 5</span></span><br></pre></td></tr></table></figure>
+<p>Now under this specific interleaving, we find it is possible for count to remain its original value instead of being zeroed out.</p>
+<ol start="5">
+<li><em>Disjoint bit manipulation</em></li>
+</ol>
+<p>This kind of “benign” data races are <a href="https://cseweb.ucsd.edu/~calder/papers/PLDI-07-DataRace.pdf" target="_blank" rel="noopener">described</a> as:</p>
+<blockquote>
+<p>… data races between two memory operations where the programmer knows for sure that the two operations use or modify different bits in a shared variable.</p>
+</blockquote>
+<p>Those kinds of manipulation are not generally benign. Updating bits usually contains <em>a)</em> Reading the whole value; <em>b)</em> Updating the relevant bits; and <em>c)</em> Writing the value back. We can clearly see specific interleaving may cause some updates to be invalid.</p>
+<p>Even in the case when there is only 1 thread updating the bits, we can come up with the following example:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x.bits1 = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">switch</span>(i) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        x.bits2 = <span class="number">1</span>;</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        x.bits2 = <span class="number">1</span>;</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        x.bits2 = <span class="number">1</span>;</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Our original code is shown above. <code>x</code> is a global variable whose bits represent different flags, and <code>bits1</code> and <code>bits2</code> are two bit fields of <code>x</code>.</p>
+<p>Notice that in our original code, <code>case 3</code> does not update <code>x.bits2</code> and it happens to be the branch we are using (assume this is a fact compiler does not know, so that the other branches will not be pruned). Now if we have a second thread only reading the value of <code>x.bits2</code>. This seems to be a perfectly safe situation.</p>
+<p>However, existing compilers may consider adjacent bit-fields as belonging to the same memory location (here in our case, <code>x.bits1</code> and <code>x.bits2</code>). The write to <code>x.bits1</code> will make the compiler think the target memory location is data-race free, thus justify its optimizations on <code>x.bits2</code>. This leads to the optimized code shown on below, where the potential updates on <code>x.bits2</code> are advanced to shrink the code size (if we have more branches that update <code>x.bits2</code>). Now if we are still using <code>case 3</code>, the read from other thread will conflict with the write on <code>case 3</code>, causing the second thread to read invalid values of <code>x.bits2</code>.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x.bits1 = <span class="number">1</span>;</span><br><span class="line">tmp = x.bits2</span><br><span class="line">x.bits2 =<span class="number">1</span></span><br><span class="line"><span class="keyword">switch</span>(i) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        x.bits2 = tmp;</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        ...;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>To sum up</strong>, the evilness of data races mostly lies in compiler optimizations, hardware reordering, and underlying memory models. Most compiler optimizations assume the program is data-race free, thus compilers may introduce <strong>undefined behaviors</strong> when data races exist. The worst thing about undefined behavior is it could lead to any actions (such as launching a missile?) instead of just entering an invalid path of your program.</p>
+<p>If you are interested in reading more discussion related to data races, there’s another <a href="https://software.intel.com/content/www/us/en/develop/blogs/benign-data-races-what-could-possibly-go-wrong.html" target="_blank" rel="noopener">blog</a> explaining this.</p>
+<h3 id="how-do-i-prevent-my-program-from-launching-missiles-unexpectedly"><a class="markdownIt-Anchor" href="#how-do-i-prevent-my-program-from-launching-missiles-unexpectedly"></a> How do I prevent my program from launching missiles unexpectedly?</h3>
+<p>If you make it here, hopefully you are not terrified by what can be caused by data races. Just to be fair, there could be “benign” data races under more concrete contexts, such as knowing the specific architecture, compiler version, optimization passes used and the memory models, and the code is not intended to be portable.</p>
+<p>Nevertheless, I strongly believe developers should pay more attention to potential data races just like how they treat compiler warnings (I feel terribly sorry for you if you don’t).</p>
+<p>Properly protecting concurrent shared memory accesses not only prevent programs from all those subtle bugs we presented above, but also significantly increase the readability for your code by specifying their concurrent semantics. Besides, there are tools like <a href="https://clang.llvm.org/docs/ThreadSanitizer.html" target="_blank" rel="noopener">ThreadSanitizer</a>, <a href="https://software.intel.com/content/www/us/en/develop/tools/inspector.html" target="_blank" rel="noopener">Intel Inspector</a>, and <a href="https://coderrect.com/" target="_blank" rel="noopener">Coderrect Racedetector</a> to efficiently reveal potential data races at different programming phases.</p>
+<p>Let’s just not making our software program to be a missile launcher, :=).</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/concurrency/">concurrency</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/01/29/2019-01-29-ifbranch/">
+        <span class="next-text nav-default">if-else branch without if</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2020
+    <span class="footer-author">Yanze Li (funemy).</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" target="_blank" rel="noopener">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
