@@ -5,7 +5,7 @@ date: 2018-08-07 10:50:47
 
 ## About
 
-I'm currently a Software Engineer in [Coderrect Inc.](https://coderrect.com/) where I'm the main developer of an LLVM-based race detection framework. My previous research mainly focus on static analysis, especially detecting concurrency bugs, but I'm generally interested in all PL related techniques.
+I'm currently a Software Engineer in [Coderrect Inc.](https://coderrect.com/) where I'm the main developer of an LLVM-based static analyzer for concurrent programs. My previous research mainly focuses on static analysis, especially detecting concurrency bugs, but I'm generally interested in all PL related techniques.
 
 
 I got my MS in Computer Science from Texas A&M University, adviced by [Dr. Jeff Huang](http://parasol.tamu.edu/~jeff/). Before that, I got my B.Eng. from Department of Electrical Engineering, [Huazhong University of Science and Technology](http://english.hust.edu.cn/).
@@ -26,10 +26,10 @@ I'm currently looking for **PhD openings in 2021Fall**, my areas of interest are
 
 ## Services
 
-Sub-reviewer: \[OOPSLA'20\] \[PLDI'19\] \[OOPSLA'19\] \[FSE'19\] \[ICSE'19\] \[TSE\]
+Sub-reviewer: \[OOPSLA'20\] \[PLDI'19\] \[OOPSLA'19\] \[FSE'19\] \[ICSE'19\] \[TSE'18\]
 
 ## Misc
-My first name, "Yanze", may be misleading in English pronunciation. It contains 2 Chinese characters ("Yan" and "Ze"). Therefore, it should be pronounced as "YEHN-ZUH". Nevertheless, I'm happy with all other variations.
+I was often asked how to pronounce my first name correctly. It contains 2 Chinese characters ("Yan" and "Ze"). Therefore, it should be pronounced as "YEHN-ZUH". Nevertheless, I'm happy with any pronunciation.
 
 I'm a huge fan of video games (although I don't have enough time playing them since I started doing research).
 I love games with good story-telling (e.g., Life is Strange/Detroit: Become Human) and games with sci-fi/cyberpunk backgrounds. I sincerely hope video games can be a main stream for story-telling someday.
