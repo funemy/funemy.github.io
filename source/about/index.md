@@ -11,7 +11,7 @@ I'm currently a Software Engineer in [Coderrect Inc.](https://coderrect.com/) wh
 I got my MS in Computer Science from Texas A&M University, adviced by [Dr. Jeff Huang](http://parasol.tamu.edu/~jeff/). Before that, I got my B.Eng. from Department of Electrical Engineering, [Huazhong University of Science and Technology](http://english.hust.edu.cn/).
 
 
-I'm currently looking for **PhD openings in 2021Fall**, my areas of interest are type system/verification/static analysis.
+I'm currently looking for **PhD openings in 2021Fall**. My area of interest is programming languages. In particular, I'm interested in how we can exploit programming languages (such as their type systems) to facilitate verification or synthesis tasks.
 
 
 ## Publication
