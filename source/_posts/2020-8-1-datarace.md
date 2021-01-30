@@ -145,7 +145,7 @@ if (my_counter > my_old_counter) {
 }
 ```
 
-Consider the code pattern on the above, where `my_counter` reads from a global variable counter without protection. The global counter may get updated by some other threads running in parallel. Here the developer may think reading an old value of counter is fine due to the if (`my_counter` > `my_old_counter`) check.
+Consider the code pattern on the above, where `my_counter` reads from a global variable `counter` without protection. The global counter may get updated by some other threads running in parallel. Here the developer may think reading an old value of counter is fine due to the if `(my_counter > my_old_counter)` check.
 
 However, if the compiler thinks the register of `my_counter` needs to be spilled between the two if-checks, then it is legit to re-read `my_counter`‘s value again to avoid spilling, as shown on the below. Now under this optimized code, the two if-checks may not yield the same result, which can lead to unexpected behavior when calling `my_func`.
 
