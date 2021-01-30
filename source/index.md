@@ -3,7 +3,7 @@ date: 2018-08-07 10:50:47
 ---
 # Yanze Li \[[CV](index/cv-yanzeli.pdf)\]
 
-![avatar](index/avatar.jpg)
+<img src="index/avatar.jpg" alt="avatar" style="float: right; margin: 20px; width: 150px;" />
 
 ## About
 

@@ -5,7 +5,14 @@
 .post-content {
   margin-bottom: $content-margin-bottom;
 
-  @for $i from 1 through 6 {
+  h1 {
+    font-size: 1.6em;
+    font-weight: 400;
+    font-family: $global-font-family;
+    margin-top: 1.2em;
+  }
+
+  @for $i from 2 through 6 {
     h#{$i} {
       font-size: 1.3em;
       font-weight: 400;
