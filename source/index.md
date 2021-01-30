@@ -3,6 +3,8 @@ date: 2018-08-07 10:50:47
 ---
 # Yanze Li \[[CV](index/cv-yanzeli.pdf)\]
 
+![avatar][avatar.jpg]
+
 ## About
 
 I'm currently a Software Engineer in [Coderrect Inc.](https://coderrect.com/) where I'm the main developer of an LLVM-based static analyzer for concurrent programs. My previous research mainly focuses on static analysis, especially detecting concurrency bugs, but I'm generally interested in all PL related techniques.
@@ -25,6 +27,8 @@ I'm currently looking for **PhD openings in 2021Fall**. My area of interest is p
   \[ [PDF](index/icse2019-demo.pdf) \] \[ [code](https://github.com/funemy/SWORD) \]
 
 ## Services
+
+[SIGPLAN-M](https://sigplan.org/LongTermMentoring/) (ACM SIGPLAN Long-term Mentoring Program), Operations Committee
 
 Sub-reviewer: \[OOPSLA'20\] \[PLDI'19\] \[OOPSLA'19\] \[FSE'19\] \[ICSE'19\] \[TSE'18\]
 
