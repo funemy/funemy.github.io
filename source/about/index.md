@@ -16,7 +16,7 @@ I'm currently looking for **PhD openings in 2021Fall**. My area of interest is p
 
 ## Publication
 
-1. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Racer Detector for OpenMP Programs**
+1. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Race Detector for OpenMP Programs**
   Bradley Swain, **Yanze Li**, Peiming Liu, Ignacio Laguna, Giorgis Georgakoudis, Jeff Huang
   \[ [PDF](index/sc-preprint.pdf) \] \[ [artifact](https://github.com/parasol-aser/OMPRacer) \]
 
