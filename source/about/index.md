@@ -17,10 +17,11 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 
 1. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
   Bozhen Liu, Peiming Liu, **Yanze Li**, Chia-Che Tsai, Dilma Da Silva, Jeff Huang
+  \[ [PDF](index/pldi21-origin.pdf) \]
 
 2. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Race Detector for OpenMP Programs**
   Bradley Swain, **Yanze Li**, Peiming Liu, Ignacio Laguna, Giorgis Georgakoudis, Jeff Huang
-  \[ [PDF](index/sc-preprint.pdf) \] \[ [artifact](https://github.com/parasol-aser/OMPRacer) \]
+  \[ [PDF](index/sc20-ompracer.pdf) \] \[ [artifact](https://github.com/parasol-aser/OMPRacer) \]
 
 3. \[ [ICSE'19](https://2019.icse-conferences.org/) \] (Demo Track) **SWORD: A Scalable Whole Program Race Detector for Java**
   **Yanze Li**, Bozhen Liu, Jeff Huang
