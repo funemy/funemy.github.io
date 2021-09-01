@@ -1,10 +1,245 @@
-{% extends "_layout.swig" %}
-{% import '_macro/post.swig' as post_template %}
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
 
-{% block title %} {{ page.title }} - {{ config.title }} {% endblock %}
 
-{% block content %}
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Use python generator to solve yin-yang puzzle"/>
+
+
+
+
+  <meta name="keywords" content="python,functional programming," />
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Yanze Li (李彦泽)" >
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1" />
+
+
+
+<link rel="canonical" href="https://funemy.github.io/2018/08/30/2018-08-30/"/>
+
+
+<meta name="description" content="An interesting solution of yin-yang puzzle, and create the universe (笑）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Use python generator to solve yin-yang puzzle">
+<meta property="og:url" content="https://funemy.github.io/2018/08/30/2018-08-30/index.html">
+<meta property="og:site_name" content="Yanze Li (李彦泽)">
+<meta property="og:description" content="An interesting solution of yin-yang puzzle, and create the universe (笑）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-08-30T17:50:00.000Z">
+<meta property="article:modified_time" content="2020-12-29T05:26:51.666Z">
+<meta property="article:author" content="Yanze Li (funemy)">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="functional programming">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css' rel='stylesheet'>
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-68838098-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> Use python generator to solve yin-yang puzzle - Yanze Li (李彦泽) </title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Yanze Li (李彦泽)</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/">
+                            
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/blogs">
+                            
+                            
+                                Blogs
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
     <div id="primary">
-        {{ post_template.render(page) }}
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Use python generator to solve yin-yang puzzle
+        
+      </h1>
+
+      <time class="post-time">
+          Aug 30 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>An interesting solution of yin-yang puzzle, and create the universe (笑）</p>
+<span id="more"></span>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yin</span>(<span class="params">cb1</span>):</span></span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;@&#x27;</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">yang</span>(<span class="params">cb2</span>):</span></span><br><span class="line">		<span class="keyword">yield</span> <span class="string">&#x27;*&#x27;</span></span><br><span class="line">		<span class="keyword">yield</span> <span class="keyword">from</span> cb1(cb2)</span><br><span class="line">	<span class="keyword">yield</span> <span class="keyword">from</span> yang(yang)</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">puzzle</span>():</span></span><br><span class="line">	<span class="keyword">yield</span> <span class="keyword">from</span> yin(yin)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">for</span> x, _ <span class="keyword">in</span> <span class="built_in">zip</span>(puzzle(), <span class="built_in">range</span>(<span class="number">50</span>)):</span><br><span class="line">	<span class="built_in">print</span>(x, end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="emphasis">*@<span class="strong">**@**</span>*</span>@<span class="strong">****</span>@<span class="strong">****</span><span class="emphasis">*@<span class="strong">****</span><span class="strong">**@**</span><span class="strong">****</span>*</span>@<span class="strong">****</span><span class="strong">****</span>@<span class="strong">****</span><span class="emphasis">*</span></span><br></pre></td></tr></table></figure>
+<p>Each time the prgram will output an extra <code>*</code> symbol, therefore our universe is created.</p>
+<p>This puzzle is a famous one in functional programming area (probably?). Notably solved by utilizing <code>call/cc</code> (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Call-with-current-continuation">continuation</a>).</p>
+<p>As we all know, python’s <code>generator</code> is no more than a simplified version of continuation. And that’s where the solution comes from.</p>
+<p>An interesting question here is why there’s an increment on <code>*</code> symbol.</p>
+<p>The key to understanding this is noticing the <strong>context</strong> carried with each generator. To make everything clear, we use notation like <code>yin_yang~yin</code>. The name befoere <code>_</code> indicates the generator name we are currently calling, the sequence after <code>_</code> indicates the value of <code>cb1</code> in the nested context, from the nearest to the furthest.</p>
+<p>Here we only need to care about <code>cb1</code> (callback 1), since it is the place where magic happens. For <code>cb2</code>, since we only call <code>yang(yang)</code>, it just duplicates itself every time.</p>
+<p>Then we can interpret the process in the following way:</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yin(yin) <span class="string">\\</span> @</span><br><span class="line">-&gt; yang_yin(yang_yin) <span class="string">\\</span> *</span><br><span class="line">-&gt; yin(yang_yin) <span class="string">\\</span> @</span><br><span class="line">-&gt; yang_yang~yin(yang_yang~yin) <span class="string">\\</span> *</span><br><span class="line">-&gt; yang_yin(yang_yang~yin) <span class="string">\\</span> *</span><br><span class="line">-&gt; yin(yang_yang~yin) <span class="string">\\</span> @</span><br><span class="line">-&gt; yang_yang~yang~yin(yang_yang~yang~yin)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>We can see how the context grows. The key here is, even though we are always passing <code>yang</code> to <code>cb1</code>, the context carried with each <code>yang</code> is different.</p>
+<p>If this explaination is not clear enough for you, a comprehensive scheme version explaination is available <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2694679/how-does-the-yin-yang-puzzle-work">here</a>.</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/python/">python</a>
+		  
+			<a href="/tags/functional-programming/">functional programming</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/01/29/2019-01-29-ifbranch/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">if-else branch without if</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/05/22/2018-05-22-restart/">
+        <span class="next-text nav-default">Restarting my blog</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
     </div>
-{% endblock %}
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2021
+    <span class="footer-author">Yanze Li (funemy).</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
