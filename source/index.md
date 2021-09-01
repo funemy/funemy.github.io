@@ -3,7 +3,7 @@ date: 2021-08-31 12:08:47
 ---
 # Yanze Li \[[CV](index/cv-yanzeli.pdf)\]
 
-<img src="index/avatar.jpg" alt="avatar" style="float: right; margin: 20px; width: 150px;" />
+<!-- <img src="index/avatar.jpg" alt="avatar" style="float: right; margin: 20px; width: 150px;" /> -->
 
 ## About
 I'm a first-year PhD student at UBC working with [Alexander J. Summers](https://www.cs.ubc.ca/~alexsumm/) and [Ivan Beschastnikh](https://www.cs.ubc.ca/~bestchai/). I'm interested in programming languages, program verification, and type theory.
