@@ -19,6 +19,7 @@ rss: default
 menu:
   Home: /
   Blogs: /blogs
+  RSS: /rss2.xml
   # Archives: /archives
   # About: /about
 
