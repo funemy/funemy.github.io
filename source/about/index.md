@@ -8,9 +8,9 @@ date: 2021-08-31 12:08:47
 ## About
 I'm a first-year PhD student at UBC working with [Alexander J. Summers](https://www.cs.ubc.ca/~alexsumm/) and [Ivan Beschastnikh](https://www.cs.ubc.ca/~bestchai/). I'm interested in programming languages, program verification, and type theory.
 
-Before that, I worked as a Software Engineer in [Coderrect Inc.](https://coderrect.com/) where I was the main developer of an LLVM-based static analyzer for concurrent programs. My previous research focused on static analysis, especially detecting concurrency bugs. Check out our recently open-sourced [race detection tool](https://github.com/coderrect-inc/OpenRace)!
+Before that, I worked as a Software Engineer in [Coderrect Inc.](https://coderrect.com/) where I was the main developer of an LLVM-based static analyzer for concurrent programs. My previous research focused on static analysis, especially detecting concurrency bugs.
 
-I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huang](http://parasol.tamu.edu/~jeff/). Before that, I got my B.Eng. from Department of Electrical Engineering, [Huazhong University of Science and Technology](http://english.hust.edu.cn/).
+I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huang](https://o2lab.github.io/). Before that, I got my B.Eng. from Department of Electrical Engineering, Huazhong University of Science and Technology.
 
 
 ## Publication
@@ -20,7 +20,7 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 
 2. \[ [Correctness'21](https://correctness-workshop.github.io/2021/) \] **OpenRace: An Open Source Framework for Statically Detecting Data Races**
   Bradley Swain, Jeff Huang, Bozhen Liu, Peiming Liu, **Yanze Li**, Addison Crump, Rohan Khera
-  \[ [PDF](index/correctness21-openrace.pdf) \]
+  \[ [PDF](index/correctness21-openrace.pdf) \] \[ [code](https://github.com/coderrect-inc/OpenRace) \]
 
 3. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
   Bozhen Liu, Peiming Liu, **Yanze Li**, Chia-Che Tsai, Dilma Da Silva, Jeff Huang
