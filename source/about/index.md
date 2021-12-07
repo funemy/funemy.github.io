@@ -14,16 +14,23 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 
 
 ## Publication
+1. \[ [ICSE'22](https://conf.researchr.org/home/icse-2022/) \] **PUS: A Fast and Highly Efficient Solver for Inclusion-based Pointer Analysis**
+  Peiming Liu, **Yanze Li**, Bradley Swain, Jeff Huang
+  \[ [PDF](#) \]
 
-1. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
+2. \[ [Correctness'21](https://correctness-workshop.github.io/2021/) \] **OpenRace: An Open Source Framework for Statically Detecting Data Races**
+  Bradley Swain, Jeff Huang, Bozhen Liu, Peiming Liu, **Yanze Li**, Addison Crump, Rohan Khera
+  \[ [PDF](index/correctness21-openrace.pdf) \]
+
+3. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
   Bozhen Liu, Peiming Liu, **Yanze Li**, Chia-Che Tsai, Dilma Da Silva, Jeff Huang
   \[ [PDF](index/pldi21-origin.pdf) \]
 
-2. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Race Detector for OpenMP Programs**
+4. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Race Detector for OpenMP Programs**
   Bradley Swain, **Yanze Li**, Peiming Liu, Ignacio Laguna, Giorgis Georgakoudis, Jeff Huang
   \[ [PDF](index/sc20-ompracer.pdf) \] \[ [artifact](https://github.com/parasol-aser/OMPRacer) \]
 
-3. \[ [ICSE'19](https://2019.icse-conferences.org/) \] (Demo Track) **SWORD: A Scalable Whole Program Race Detector for Java**
+5. \[ [ICSE'19](https://2019.icse-conferences.org/) \] (Demo Track) **SWORD: A Scalable Whole Program Race Detector for Java**
   **Yanze Li**, Bozhen Liu, Jeff Huang
   \[ [PDF](index/icse2019-demo.pdf) \] \[ [code](https://github.com/funemy/SWORD) \]
 
