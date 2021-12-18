@@ -41,7 +41,7 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 Sub-reviewer: \[OOPSLA'20\] \[PLDI'19\] \[OOPSLA'19\] \[FSE'19\] \[ICSE'19\] \[TSE'18\]
 
 ## Misc
-I was often asked how to pronounce my first name correctly. It contains 2 Chinese characters ("Yan(彦)" and "Ze(泽)") and pronounces similar to "YEHN-ZUH". Nevertheless, I'm happy with any reasonable pronunciation.
+I was often asked how to pronounce my first name correctly. It contains 2 Chinese characters ("Yan(彦)" and "Ze(泽)") and you can find its pronunciation in Mandarin [here](https://translate.google.com/?sl=zh-CN&tl=en&text=%E5%BD%A6%E6%B3%BD&op=translate). Nevertheless, **I'm happy with any reasonable pronunciation**!
 
 I'm a huge fan of video games (although I don't have enough time playing them since I started doing research).
 I love games with good story-telling (e.g., Life is Strange/Detroit: Become Human) and games with sci-fi/cyberpunk backgrounds. I sincerely hope video games can be a main stream for story-telling someday.
