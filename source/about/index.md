@@ -34,6 +34,11 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
   **Yanze Li**, Bozhen Liu, Jeff Huang
   \[ [PDF](index/icse2019-demo.pdf) \] \[ [code](https://github.com/funemy/SWORD) \]
 
+## Teaching
+
+Teaching Assistant: CPSC 416  Distributed Systems, Winter 2022
+Teaching Assistant: CPSC 410 Advanced Software Engineering, Fall 2021
+
 ## Services
 
 [SIGPLAN-M](https://sigplan.org/LongTermMentoring/) (ACM SIGPLAN Long-term Mentoring Program), Operations Committee

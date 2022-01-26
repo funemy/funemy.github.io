@@ -37,7 +37,7 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 ## Teaching
 
 Teaching Assistant: CPSC 416  Distributed Systems, Winter 2022
-Teaching Assistant: CSPC 410 Advanced Software Engineering, Fall 2021
+Teaching Assistant: CPSC 410 Advanced Software Engineering, Fall 2021
 
 ## Services
 
