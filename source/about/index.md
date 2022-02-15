@@ -20,7 +20,7 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 
 2. \[ [Correctness'21](https://correctness-workshop.github.io/2021/) \] **OpenRace: An Open Source Framework for Statically Detecting Data Races**
   Bradley Swain, Jeff Huang, Bozhen Liu, Peiming Liu, **Yanze Li**, Addison Crump, Rohan Khera
-  \[ [PDF](index/correctness21-openrace.pdf) \] \[ [code](https://github.com/coderrect-inc/OpenRace) \]
+  \[ [PDF](index/correctness21-openrace.pdf) \] \[ [code](https://github.com/BradSwain/OpenRace) \]
 
 3. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
   Bozhen Liu, Peiming Liu, **Yanze Li**, Chia-Che Tsai, Dilma Da Silva, Jeff Huang
