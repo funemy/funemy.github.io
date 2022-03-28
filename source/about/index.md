@@ -53,4 +53,5 @@ I love games with good story-telling (e.g., Life is Strange/Detroit: Become Huma
 
 ## Contact
 
-Email: ($\lambda$ x y . xy @ gmail . com) 'liyz' 'unique'
+$(\lambda x. \lambda y. xy@gmail.com)\;\;liyz\;\;unique$
+$(\lambda x. \lambda y. xy@cs.ubc.ca)\;\;yanze\;\;li$
