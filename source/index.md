@@ -53,4 +53,9 @@ I love games with good story-telling (e.g., Life is Strange/Detroit: Become Huma
 
 ## Contact
 
-Email: ($\lambda$ x y . xy @ gmail . com) 'liyz' 'unique'
+Email:
+```haskell
+email = \x y z -> x ++ "@" ++ y ++ "." ++ z
+personal = email "liyzunique" "gmail" "com"
+work = email "yanzeli" "cs.ubc" "ca"
+```
