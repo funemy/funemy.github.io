@@ -16,7 +16,7 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 ## Publication
 1. \[ [ICSE'22](https://conf.researchr.org/home/icse-2022/) \] **PUS: A Fast and Highly Efficient Solver for Inclusion-based Pointer Analysis**
   Peiming Liu, **Yanze Li**, Bradley Swain, Jeff Huang
-  **_Nominated for ACM SIGSOFT Distinguished Paper Award_**
+  **_ACM SIGSOFT Distinguished Paper Award_**
   \[ [PDF](index/icse22-pus.pdf) \]
 
 2. \[ [Correctness'21](https://correctness-workshop.github.io/2021/) \] **OpenRace: An Open Source Framework for Statically Detecting Data Races**
