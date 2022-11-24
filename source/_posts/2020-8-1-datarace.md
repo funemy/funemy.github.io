@@ -114,7 +114,7 @@ tmp = my_data;
 
 This is a very famous pattern (known as DCLP), and is also well-known to be incorrect. The code is potentially buggy if compiler optimization or hardware reordering is applied (which they are, in most real cases).
 
-For example, there’s nothing to prevent the compiler from advancing `init_flag = true` before the setting of `my_data`, thus a second thread may end up reading an uninitialized value.
+For example, there’s nothing to prevent the compiler from advancing `init_flag = true` before the setting of `my_data`. Assuming there are two threads executing the code above, the second thread may end up reading an uninitialized value (because `init_flag` is set to `true` before `my_data` get initialized).
 
 A general solution for this pattern does not exist until Java 1.5 (the `volatile` keyword) and C++11 (the memory fence). Without these, we have to protect the whole pattern with a lock, which in turn brings a performance degradation.
 
@@ -188,7 +188,7 @@ while (!tmp) {
 }
 ```
 
-For example, the busy-waiting loop above can be optimized to something like the second code snippet, due to register spilling. The optimized loop is likely to be infinite, yet it is equivalent to the example on the left under sequential code.
+For example, the busy-waiting loop above can be optimized to something like the second code snippet, due to register spilling. The optimized loop might run indefinitely under concurrent execution, yet it is equivalent to the example on top under sequential code.
 
 Or if we want to use a busy-waiting loop as a memory barrier, like the example below:
 
