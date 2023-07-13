@@ -43,7 +43,7 @@
 <meta property="og:description" content="An interesting solution of yin-yang puzzle, and create the universe (笑）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-08-30T10:50:00.000Z">
-<meta property="article:modified_time" content="2023-02-06T02:18:10.934Z">
+<meta property="article:modified_time" content="2023-07-13T23:57:19.914Z">
 <meta property="article:author" content="Yanze Li (funemy)">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="functional programming">
@@ -84,7 +84,7 @@
 
 
     <title> Use python generator to solve yin-yang puzzle - Yanze Li (李彦泽) </title>
-  <meta name="generator" content="Hexo 5.4.0"></head>
+  <meta name="generator" content="Hexo 6.3.0"></head>
 
   <body>
     <div id="page">
@@ -96,6 +96,12 @@
     <nav id="nav-top">
         
             <ul id="menu-top" class="nav-top-items">
+                <li class="menu-item">
+                  <a target="_blank" rel="noopener" href="https://bobs-club.net/site/ID/pred" title="previous site">&lt;&lt;</a>
+                  <a target="_blank" rel="noopener" href="https://bobs-club.net/site/ID/random" title="random site">?</a>
+                  <a target="_blank" rel="noopener" href="https://bobs-club.net/" title="web ring">bob's club</a>
+                  <a target="_blank" rel="noopener" href="https://bobs-club.net/site/ID/succ" title="next site">&gt;&gt;</a>
+                </li>
                 
                     <li class="menu-item">
                         <a href="/">
@@ -144,7 +150,7 @@
             <div class="post-content">
             <p>An interesting solution of yin-yang puzzle, and create the universe (笑）</p>
 <span id="more"></span>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yin</span>(<span class="params">cb1</span>):</span></span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;@&#x27;</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">yang</span>(<span class="params">cb2</span>):</span></span><br><span class="line">		<span class="keyword">yield</span> <span class="string">&#x27;*&#x27;</span></span><br><span class="line">		<span class="keyword">yield</span> <span class="keyword">from</span> cb1(cb2)</span><br><span class="line">	<span class="keyword">yield</span> <span class="keyword">from</span> yang(yang)</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">puzzle</span>():</span></span><br><span class="line">	<span class="keyword">yield</span> <span class="keyword">from</span> yin(yin)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">for</span> x, _ <span class="keyword">in</span> <span class="built_in">zip</span>(puzzle(), <span class="built_in">range</span>(<span class="number">50</span>)):</span><br><span class="line">	<span class="built_in">print</span>(x, end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">yin</span>(<span class="params">cb1</span>):</span><br><span class="line">	<span class="keyword">yield</span> <span class="string">&#x27;@&#x27;</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">yang</span>(<span class="params">cb2</span>):</span><br><span class="line">		<span class="keyword">yield</span> <span class="string">&#x27;*&#x27;</span></span><br><span class="line">		<span class="keyword">yield</span> <span class="keyword">from</span> cb1(cb2)</span><br><span class="line">	<span class="keyword">yield</span> <span class="keyword">from</span> yang(yang)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">puzzle</span>():</span><br><span class="line">	<span class="keyword">yield</span> <span class="keyword">from</span> yin(yin)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">for</span> x, _ <span class="keyword">in</span> <span class="built_in">zip</span>(puzzle(), <span class="built_in">range</span>(<span class="number">50</span>)):</span><br><span class="line">	<span class="built_in">print</span>(x, end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="emphasis">*@<span class="strong">**@**</span>*</span>@<span class="strong">****</span>@<span class="strong">****</span><span class="emphasis">*@<span class="strong">****</span><span class="strong">**@**</span><span class="strong">****</span>*</span>@<span class="strong">****</span><span class="strong">****</span>@<span class="strong">****</span><span class="emphasis">*</span></span><br></pre></td></tr></table></figure>
 <p>Each time the prgram will output an extra <code>*</code> symbol, therefore our universe is created.</p>
 <p>This puzzle is a famous one in functional programming area (probably?). Notably solved by utilizing <code>call/cc</code> (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Call-with-current-continuation">continuation</a>).</p>
