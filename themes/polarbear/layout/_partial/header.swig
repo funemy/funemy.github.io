@@ -7,10 +7,10 @@
         {% if theme.menu %}
             <ul id="menu-top" class="nav-top-items">
                 <li class="menu-item">
-                  <a href="https://bobs-club.net/site/ID/pred" title="previous site">&lt;&lt;</a>
-                  <a href="https://bobs-club.net/site/ID/random" title="random site">?</a>
+                  <a href="https://bobs-club.net/site/funemy/pred" title="previous site">&lt;&lt;</a>
+                  <a href="https://bobs-club.net/site/funemy/random" title="random site">?</a>
                   <a href="https://bobs-club.net/" title="web ring">bob's club</a>
-                  <a href="https://bobs-club.net/site/ID/succ" title="next site">&gt;&gt;</a>
+                  <a href="https://bobs-club.net/site/funemy/succ" title="next site">&gt;&gt;</a>
                 </li>
                 {% for name, path in theme.menu %}
                     <li class="menu-item">
