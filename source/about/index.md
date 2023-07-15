@@ -37,12 +37,12 @@ I got my MS in Computer Science from Texas A&M University, advised by [Jeff Huan
 
 ## Teaching
 
-Teaching Assistant: CPSC 416  Distributed Systems, Winter 2022
-Teaching Assistant: CPSC 410 Advanced Software Engineering, Fall 2021
+Teaching Assistant: CPSC 416  Distributed Systems, 2022S
+Teaching Assistant: CPSC 410 Advanced Software Engineering, 2021F, 2022F
 
 ## Services
 
-[SIGPLAN-M](https://sigplan.org/LongTermMentoring/) (ACM SIGPLAN Long-term Mentoring Program), Operations Committee
+[SIGPLAN-M](https://sigplan.org/LongTermMentoring/), Operations Team, 2020.8-2022.11
 
 Sub-reviewer: \[OOPSLA'20\] \[PLDI'19\] \[OOPSLA'19\] \[FSE'19\] \[ICSE'19\] \[TSE'18\]
 
