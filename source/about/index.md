@@ -43,7 +43,6 @@ Teaching Assistant: CPSC 410 Advanced Software Engineering, 2021F, 2022F
 ## Services
 
 [SIGPLAN-M](https://sigplan.org/LongTermMentoring/), Operations Team, 2020.8-2022.11
-
 Sub-reviewer: \[OOPSLA'20\] \[PLDI'19\] \[OOPSLA'19\] \[FSE'19\] \[ICSE'19\] \[TSE'18\]
 
 ## Misc
