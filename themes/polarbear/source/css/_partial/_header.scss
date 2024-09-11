@@ -4,7 +4,7 @@
 
 .header {
   @include clearfix;
-  padding: $header-padding;
+  & { padding: $header-padding; }
 }
 
 
@@ -42,7 +42,7 @@
 
 #nav-top {
     float: right;
-    
+
     .nav-top-items {
         list-style: none;
         padding-left: 0px;
