@@ -1,3 +1,5 @@
+@use "../variables";
+
 // ==============================
 // Tags
 // =============================
@@ -5,13 +7,13 @@
 .tag-cloud {
   margin: 2em 0 3em;
   text-align: center;
-  font-family: $global-font-family;
+  font-family: variables.$global-font-family;
 
   .tag-cloud-title {
     display: inline-block;
-    font-size: $tag-cloud-title-size;
-    color: $theme-color;
-    border-bottom: $tag-cloud-title-border-bottom;
+    font-size: variables.$tag-cloud-title-size;
+    color: variables.$theme-color;
+    border-bottom: variables.$tag-cloud-title-border-bottom;
   }
 
   .tag-cloud-tags {
@@ -20,7 +22,7 @@
     a {
       display: inline-block;
       position: relative;
-      margin: $tag-cloud-tags-link-margin;
+      margin: variables.$tag-cloud-tags-link-margin;
       word-wrap: break-word;
       transition-duration: 0.2s;
       transition-property: transform;
@@ -29,7 +31,7 @@
       &:active,
       &:focus,
       &:hover {
-        color: $theme-color;
+        color: variables.$theme-color;
         transform: scale(1.1);
       }
     }

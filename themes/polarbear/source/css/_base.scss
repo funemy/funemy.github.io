@@ -1,20 +1,21 @@
-@import '_common/normalize';
+@use '_common/normalize';
+@use "variables";
 
 html {
-  font-size: $global-font-size;
+  font-size: variables.$global-font-size;
   box-sizing: border-box;
 }
 
 body {
   padding: 0;
   margin: 0;
-  font-family: $global-font-family;
+  font-family: variables.$global-font-family;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: $global-lineheight;
-  color: $global-font-color;
-  background: $global-background;
+  line-height: variables.$global-lineheight;
+  color: variables.$global-font-color;
+  background: variables.$global-background;
   scroll-behavior: smooth;
   vertical-align: baseline;
 }
@@ -27,19 +28,19 @@ img {
 }
 
 a {
-  color: $global-font-color;
+  color: variables.$global-font-color;
   text-decoration: none;
 }
 
-@each $header, $size in $global-headings {
+@each $header, $size in variables.$global-headings {
   #{$header} {
     font-size: $size;
-    font-family: $global-font-family;
+    font-family: variables.$global-font-family;
   }
 }
 
 .content-wrapper {
-  padding: $global-container-padding;
+  padding: variables.$global-container-padding;
 }
 
 // make video fluid:
@@ -64,7 +65,7 @@ a {
     padding: 5px 10px;
     font-size: 14px;
     margin-top: 1em;
-    color: $global-font-color;
+    color: variables.$global-font-color;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.75);
     text-decoration: none;

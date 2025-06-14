@@ -1,9 +1,11 @@
+@use "../variables";
+
 // ==============================
 // Post footer
 // =============================
 
 .footer {
-  margin-top: $footer-margin-top;
+  margin-top: variables.$footer-margin-top;
 }
 
 #colophon {
@@ -11,13 +13,13 @@
 	margin: 30px auto 0;
 	padding: 20px 0;
 	border-top: 1px solid #e1e1e1;
-    color: $dark-gray;
+    color: variables.$dark-gray;
 	font-size: 14px;
-    max-width: $global-body-width;
+    max-width: variables.$global-body-width;
 	display: block;
     overflow: hidden;
     a {
-        color: $dark-gray;
+        color: variables.$dark-gray;
     }
 
     .footer-author{

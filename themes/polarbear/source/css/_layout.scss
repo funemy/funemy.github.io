@@ -1,7 +1,10 @@
+@use "_common/utils";
+@use "variables";
+
 #content {
-    margin: $global-content-margin;
+    margin: variables.$global-content-margin;
     width: 90%;
-	max-width: $global-body-width;
+	max-width: variables.$global-body-width;
 }
 
 #primary.home {
@@ -11,10 +14,10 @@
 
 #primary {
     max-width: 750px;
-    margin: $global-content-margin;
+    margin: variables.$global-content-margin;
 }
 
-@include max-screen() {
+@include utils.max-screen() {
   .site-header-inner, .content {
     width: 90%;
   }

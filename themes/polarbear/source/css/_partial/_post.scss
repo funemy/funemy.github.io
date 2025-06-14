@@ -1,17 +1,20 @@
+@use "sass:meta";
+@use "../variables";
+
 // ==============================
 // Post
 // ==============================
 
 .posts {
-  margin-bottom: $post-list-margin-bottom;
-  border-bottom: $post-border;
+  margin-bottom: variables.$post-list-margin-bottom;
+  border-bottom: variables.$post-border;
 }
 
 .post {
-  padding: $post-padding;
+  padding: variables.$post-padding;
 
   & + .post {
-    border-top: $post-border;
+    border-top: variables.$post-border;
   }
 
   .post-excerpt {
@@ -20,7 +23,7 @@
       }
   }
 
-  @import '_post/header';
-  @import '_post/content';
-  @import '_post/footer';
+  @include meta.load-css('_post/header');
+  @include meta.load-css('_post/content');
+  @include meta.load-css('_post/footer');
 }

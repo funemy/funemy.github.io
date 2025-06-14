@@ -23,8 +23,7 @@ I obtained my B.Eng. at Huazhong University of Science and Technology (HUST), wh
   \[ [PDF](index/correctness21-openrace.pdf) \] \[ [code](https://github.com/BradSwain/OpenRace) \]
 
 3. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
-  Bozhen Liu, Peiming Liu, **Yanze Li**, Chia-Che Tsai, Dilma Da Silva, Jeff Huang
-  \[ [PDF](index/pldi21-origin.pdf) \]
+  Bozhen Liu, Peiming Liu, **Yanze Li**, Chia-Che Tsai, Dilma Da Silva, Jeff Huang \[ [PDF](index/pldi21-origin.pdf) \]
 
 4. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Race Detector for OpenMP Programs**
   Bradley Swain, **Yanze Li**, Peiming Liu, Ignacio Laguna, Giorgis Georgakoudis, Jeff Huang
@@ -51,7 +50,7 @@ CPSC 410  - Advanced Software Engineering, TA, 2021F, 2022F, 2024S
 Sub-reviewer: \[ICSE'23\] \[ASE'22\] \[OOPSLA'20\] \[PLDI'19\] \[OOPSLA'19\] \[FSE'19\] \[ICSE'19\] \[TSE'18\]
 
 ## Misc
-I was often asked how to pronounce my first name correctly. It contains 2 Chinese characters (Yan(彦) and Ze(泽)) and google translate gives a very accurate pronunciation in Mandarin ([link](https://translate.google.com/?sl=zh-CN&tl=en&text=%E5%BD%A6%E6%B3%BD&op=translate)). However, **I'm happy with any reasonable pronunciation**, and you shouldn't feel obligated to pronounce it "right"! Most of my friends read it as "Yan-zee" in English.
+I was often asked how to pronounce my first name correctly. It contains 2 Chinese characters Yan(彦) and Ze(泽) and google translate gives a very accurate pronunciation in Mandarin ([link](https://translate.google.com/?sl=zh-CN&tl=en&text=%E5%BD%A6%E6%B3%BD&op=translate)). However, **I'm happy with any reasonable pronunciation**, and you shouldn't feel obligated to pronounce it "right"! Most of my friends read it as "Yan-zee" in English.
 
 I'm a huge fan of video games (although I don't have enough time playing them since I started doing research). I love games with good story-telling. I hope video games can be a main stream for story-telling someday.
 

@@ -1,14 +1,16 @@
+@use "../variables";
+
 
 .categories {
   margin: 2em 0 3em;
   text-align: center;
-  font-family: $global-font-family;
+  font-family: variables.$global-font-family;
 
   .categories-title {
     display: inline-block;
-    font-size: $categories-title-size;
-    color: $theme-color;
-    border-bottom: $categories-title-border-bottom;
+    font-size: variables.$categories-title-size;
+    color: variables.$theme-color;
+    border-bottom: variables.$categories-title-border-bottom;
   }
 
   .categories-tags {
@@ -17,7 +19,7 @@
     .category-link {
       display: inline-block;
       position: relative;
-      margin: $categories-tags-link-margin;
+      margin: variables.$categories-tags-link-margin;
       word-wrap: break-word;
       transition-duration: 0.2s;
       transition-property: transform;
@@ -28,14 +30,14 @@
         position: relative;
         top: -8px;
         right: -2px;
-        color: $theme-color;
-        font-size: $category-count-font-size;
+        color: variables.$theme-color;
+        font-size: variables.$category-count-font-size;
       }
 
       &:active,
       &:focus,
       &:hover {
-        color: $theme-color;
+        color: variables.$theme-color;
         transform: scale(1.1);
       }
     }

@@ -1,18 +1,18 @@
-@import "_custom/custom";
-@import "variables";
+@use "_custom/custom";
+@use "variables";
 
-@import "_common/utils";
-@import "_common/animation";
+@use "_common/utils";
+@use "_common/animation";
 
-@import "base";
-@import "layout";
-@import "_partial/header";
-@import "_partial/post";
-@import "_partial/pagination";
-@import "_partial/widget";
-@import "_partial/footer";
-@import "_partial/archive";
-@import "_partial/tags";
-@import "_partial/categories";
-@import "_partial/iconfont";
-@import "_partial/back-to-top";
+@use "base";
+@use "layout";
+@use "_partial/header";
+@use "_partial/post";
+@use "_partial/pagination";
+@use "_partial/widget";
+@use "_partial/footer";
+@use "_partial/archive";
+@use "_partial/tags";
+@use "_partial/categories";
+@use "_partial/iconfont";
+@use "_partial/back-to-top";

@@ -1,13 +1,18 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+@use "../../variables";
+
 code, pre {
   padding: 7px;
-  font-size: $code-font-size;
-  font-family: $code-font-family;
-  background: $code-background;
+  font-size: variables.$code-font-size;
+  font-family: variables.$code-font-family;
+  background: variables.$code-background;
 }
 
 code {
   padding: 3px 5px;
-  color: $code-color;
+  color: variables.$code-color;
 }
 
 .highlight {
@@ -23,15 +28,15 @@ code {
       right: 0;
       left: 0;
       padding: 2px 7px;
-      font-size: $code-font-size;
+      font-size: variables.$code-font-size;
       font-weight: bold;
-      color: $gray;
-      background: darken($code-background, 3%);
+      color: variables.$gray;
+      background: color.adjust(variables.$code-background, $lightness: -3%);
       content: 'Code';
     }
   }
 
-  @each $sign, $text in $code-type-list {
+  @each $sign, $text in variables.$code-type-list {
     &.#{$sign} > ::after {
       content: $text;
     }
@@ -46,7 +51,7 @@ code {
 
   .gutter {
     width: 10px;
-    color: $gray;
+    color: variables.$gray;
 
     pre {
       margin: 0;
@@ -57,7 +62,7 @@ code {
   .line {
     // Fix code block null line height and
     // Synchronous gutter and code line highly.
-    height: round($code-font-size * 1.5);
+    height: math.round(variables.$code-font-size * 1.5);
   }
 
   table, tr, td {
@@ -70,13 +75,13 @@ code {
   .code {
     .comment,
     .quote {
-      color: map-get($code-highlight-color, comment);
+      color: map.get(variables.$code-highlight-color, comment);
     }
 
     .keyword,
     .selector-tag,
     .addition {
-      color: map-get($code-highlight-color, keyword);
+      color: map.get(variables.$code-highlight-color, keyword);
     }
 
     .number,
@@ -85,7 +90,7 @@ code {
     .literal,
     .doctag,
     .regexp {
-      color: map-get($code-highlight-color, number);
+      color: map.get(variables.$code-highlight-color, number);
     }
 
     .title,
@@ -93,7 +98,7 @@ code {
     .name,
     .selector-id,
     .selector-class {
-      color: map-get($code-highlight-color, title);
+      color: map.get(variables.$code-highlight-color, title);
     }
 
     .attribute,
@@ -102,7 +107,7 @@ code {
     .template-variable,
     .class .title,
     .type {
-      color: map-get($code-highlight-color, attribute);
+      color: map.get(variables.$code-highlight-color, attribute);
     }
 
     .symbol,
@@ -113,12 +118,12 @@ code {
     .selector-attr,
     .selector-pseudo,
     .link {
-      color: map-get($code-highlight-color, symbol);
+      color: map.get(variables.$code-highlight-color, symbol);
     }
 
     .built_in,
     .deletion {
-      color: map-get($code-highlight-color, built_in);
+      color: map.get(variables.$code-highlight-color, built_in);
     }
   }
 }

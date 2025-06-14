@@ -18,9 +18,11 @@
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-dartsass": "^1.1.0",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-markdown-it-plus": "^1.0.6",
     "hexo-renderer-stylus": "^3.0.0",
+    "hexo-renderer-swig": "^2.0.0",
     "hexo-server": "^3.0.0",
     "hexo-tag-embed": "^1.0.0"
   }

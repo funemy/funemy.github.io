@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
 // ==============================
 // Variables
 // ==============================
@@ -17,16 +20,16 @@ $theme-color-map: (
 
 // Check theme color config.
 // if it does not exist, use default theme color.
-@if not(map-has-key($theme-color-map, $theme-color-config)) {
+@if not(map.has-key($theme-color-map, $theme-color-config)) {
   $theme-color-config: 'Default';
 }
-$theme-color-list: map-get($theme-color-map, $theme-color-config);
+$theme-color-list: map.get($theme-color-map, $theme-color-config);
 
 // Default theme color of the site.
-$theme-color: nth($theme-color-list, 1) !default;
+$theme-color: list.nth($theme-color-list, 1) !default;
 
 // Deputy theme color of the site.
-$deputy-color: nth($theme-color-list, 2) !default;
+$deputy-color: list.nth($theme-color-list, 2) !default;
 
 
 // ========== Color ========== //
@@ -137,7 +140,7 @@ $content-blockquote-backgroud: rgba($theme-color, 0.05) !default;
 $content-blockquote-border-left: 3px solid rgba($theme-color, 0.3) !default;
 
 // Border color of the table.
-$content-table-border-color: darken($deputy-color, 3%) !default;
+$content-table-border-color: color.adjust($deputy-color, $lightness: -3%) !default;
 
 $content-margin-bottom: 40px !default;
 

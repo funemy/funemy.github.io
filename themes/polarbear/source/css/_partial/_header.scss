@@ -1,14 +1,17 @@
+@use "../_common/utils";
+@use "../variables";
+
 // ==============================
 // Header
 // ==============================
 
 .header {
-  @include clearfix;
-  & { padding: $header-padding; }
+  @include utils.clearfix;
+  & { padding: variables.$header-padding; }
 }
 
 
-@include max-screen() {
+@include utils.max-screen() {
   .header {
     padding: 20px 0 0;
     text-align: center;
@@ -24,19 +27,19 @@
 }
 
 .site-header-inner {
-    height: $site-header-height;
-    line-height: $site-header-height;
-    max-width: $global-body-width;
-    margin: $global-content-margin;
+    height: variables.$site-header-height;
+    line-height: variables.$site-header-height;
+    max-width: variables.$global-body-width;
+    margin: variables.$global-content-margin;
     width: 90%;
 }
 
 .site-title {
     text-align: left;
     display: inline-block;
-    margin: $global-content-margin;
+    margin: variables.$global-content-margin;
     font-weight: 400;
-    font-size: $site-title-size;
+    font-size: variables.$site-title-size;
     color: rgba(0, 0, 0, 0.7);
 }
 
@@ -49,7 +52,7 @@
     	margin: 0 auto;
 
         .menu-item {
-        	font-size: $global-font-size;
+        	font-size: variables.$global-font-size;
         	margin-left: 30px;
         	display: inline-block;
             a {
