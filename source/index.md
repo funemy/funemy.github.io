@@ -13,7 +13,7 @@ Before I started my PhD, I did my Master's in Computer Science at Texas A&M Univ
 I obtained my B.Eng. at Huazhong University of Science and Technology (HUST), where I studied how to produce and transmit electricity.
 
 ## Publication
-1. \[ [ESOP'27](https://conf.researchr.org/home/icse-2022/) \] **Modular Responsiveness Verification of Rust Async Runtimes**
+1. \[ [ESOP'27](https://etaps.org/2027/conferences/esop/) \] **Modular Responsiveness Verification of Rust Async Runtimes**
   **Yanze Li**, Ivan Beschastnikh, Alexander J. Summers
   \[ [preprint](index/esop27-jackdaw.pdf) \]
 2. \[ [eBPF'26](https://ebpf.github.io/2026/papers.html) \] (Poster) **Unifying eBPF across Platforms: Formal Semantics, Conformance Testing, and Specifications**
