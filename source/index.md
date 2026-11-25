@@ -16,7 +16,7 @@ I obtained my B.Eng. at Huazhong University of Science and Technology (HUST), wh
 1. \[ [ESOP'27](https://conf.researchr.org/home/icse-2022/) \] **Modular Responsiveness Verification of Rust Async Runtimes**
   **Yanze Li**, Ivan Beschastnikh, Alexander J. Summers
   \[ [preprint](index/esop27-jackdaw.pdf) \]
-2. \[ [eBPF'27](https://ebpf.github.io/2026/papers.html) \] (Poster) **Unifying eBPF across Platforms: Formal Semantics, Conformance Testing, and Specifications**
+2. \[ [eBPF'26](https://ebpf.github.io/2026/papers.html) \] (Poster) **Unifying eBPF across Platforms: Formal Semantics, Conformance Testing, and Specifications**
   **Yanze Li**, Reto Achermann, Ivan Beschastnikh, Alexander J. Summers
   \[ [extended abstract](index/ebpf26-unifying-ebpf.pdf) \] \[ [poster](index/ebpf26-unifying-ebpf-poster.pdf) \]
 3. \[ [ICSE'22](https://conf.researchr.org/home/icse-2022/) \] **PUS: A Fast and Highly Efficient Solver for Inclusion-based Pointer Analysis**
