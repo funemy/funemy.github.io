@@ -15,20 +15,23 @@ I obtained my B.Eng. at Huazhong University of Science and Technology (HUST), wh
 ## Publication
 1. \[ [ESOP'27](https://conf.researchr.org/home/icse-2022/) \] **Modular Responsiveness Verification of Rust Async Runtimes**
   **Yanze Li**, Ivan Beschastnikh, Alexander J. Summers
-  \[ [PDF](index/esop27-jackdaw.pdf) \]
-1. \[ [ICSE'22](https://conf.researchr.org/home/icse-2022/) \] **PUS: A Fast and Highly Efficient Solver for Inclusion-based Pointer Analysis**
+  \[ [preprint](index/esop27-jackdaw.pdf) \]
+2. \[ [eBPF'27](https://ebpf.github.io/2026/papers.html) \] (Poster) **Unifying eBPF across Platforms: Formal Semantics, Conformance Testing, and Specifications**
+  **Yanze Li**, Reto Achermann, Ivan Beschastnikh, Alexander J. Summers
+  \[ [extended abstract](index/ebpf26-unifying-ebpf.pdf) \] \[ [poster](index/ebpf26-unifying-ebpf-poster.pdf) \]
+3. \[ [ICSE'22](https://conf.researchr.org/home/icse-2022/) \] **PUS: A Fast and Highly Efficient Solver for Inclusion-based Pointer Analysis**
   Peiming Liu, **Yanze Li**, Bradley Swain, Jeff Huang
   **_ACM SIGSOFT Distinguished Paper Award_**
   \[ [PDF](index/icse22-pus.pdf) \]
-3. \[ [Correctness'21](https://correctness-workshop.github.io/2021/) \] **OpenRace: An Open Source Framework for Statically Detecting Data Races**
+4. \[ [Correctness'21](https://correctness-workshop.github.io/2021/) \] **OpenRace: An Open Source Framework for Statically Detecting Data Races**
   Bradley Swain, Jeff Huang, Bozhen Liu, Peiming Liu, **Yanze Li**, Addison Crump, Rohan Khera
   \[ [PDF](index/correctness21-openrace.pdf) \] \[ [code](https://github.com/BradSwain/OpenRace) \]
-4. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
+5. \[ [PLDI'21](https://pldi21.sigplan.org/) \] **When Threads Meet Events: Efficient and Precise Static Race Detection with Origins**
   Bozhen Liu, Peiming Liu, **Yanze Li**, Chia-Che Tsai, Dilma Da Silva, Jeff Huang \[ [PDF](index/pldi21-origin.pdf) \]
-5. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Race Detector for OpenMP Programs**
+6. \[ [SC'20](https://sc20.supercomputing.org/) \] **OMPRacer: A Scalable and Precise Static Race Detector for OpenMP Programs**
   Bradley Swain, **Yanze Li**, Peiming Liu, Ignacio Laguna, Giorgis Georgakoudis, Jeff Huang
   \[ [PDF](index/sc20-ompracer.pdf) \] \[ [artifact](https://github.com/parasol-aser/OMPRacer) \]
-6. \[ [ICSE'19](https://2019.icse-conferences.org/) \] (Demo Track) **SWORD: A Scalable Whole Program Race Detector for Java**
+7. \[ [ICSE'19](https://2019.icse-conferences.org/) \] (Demo Track) **SWORD: A Scalable Whole Program Race Detector for Java**
   **Yanze Li**, Bozhen Liu, Jeff Huang
   \[ [PDF](index/icse2019-demo.pdf) \] \[ [code](https://github.com/funemy/SWORD) \]
 
@@ -42,7 +45,7 @@ I worked on a randomized concurrency testing tool called [Shuttle](https://githu
 CPSC 539S - Program Verifiers and Program Verification, TA, 2023F, 2025F
 CPSC 416  - Distributed Systems, TA, 2022S
 CPSC 411  - Introduction to Compiler Construction, TA, 2026S
-CPSC 410  - Advanced Software Engineering, TA, 2021F, 2022F, 2024S
+CPSC 410  - Advanced Software Engineering, TA, 2021F, 2022F, 2024S, 2026F
 
 ## Services
 
